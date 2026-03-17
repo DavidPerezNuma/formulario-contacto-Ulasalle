@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  lasalle_app:
+    build: .
+    container_name: lasalle_app
+    ports:
+      - '8080:80'
+    volumes:
+      - ./public:/var/www/html
+    depends_on:
+      - lasalle_db
+
+  lasalle_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: lasalle_phpmyadmin
+    environment:
+      PMA_HOST: lasalle_db
+      PMA_PORT: 3306
+    ports:
+      - '8081:80'
+
+  lasalle_db:
+    image: mysql:8.0
+    container_name: lasalle_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contacto_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - '3307:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./src/infrastructure/config/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
