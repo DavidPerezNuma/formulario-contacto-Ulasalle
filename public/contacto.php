@@ -60,7 +60,11 @@
     </div>
     <?php endif; ?>
 
-    <footer>
+<footer style="margin-top: 3rem; padding: 2rem; background-color: #f4f4f4; border-top: 2px solid #004b87; text-align: center;">
+        <p style="font-weight: bold; color: #004b87; margin-bottom: 0.5rem;">Soporte Técnico - Universidad de La Salle</p>
+        <p style="margin: 0.2rem 0;">📧 Contacto: <a href="mailto:ju-medina@correo.com">ju-medina@correo.com</a></p>
+        <p style="margin: 0.2rem 0;">🕒 Horario: Lunes a Viernes (8:00 AM - 6:00 PM)</p>
+        <hr style="width: 50%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
         <p>&copy; 2026 <span>Universidad de La Salle</span> · Proyecto académico</p>
     </footer>
 </body>
