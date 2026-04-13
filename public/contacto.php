@@ -1,3 +1,4 @@
+
 <?php // contacto.php ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -5,11 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto - U La Salle</title>
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="/src/presentation/css/style.css">
+
+    <!-- Scripts -->
     <script src="/src/presentation/js/validate.js" defer></script>
     <script src="/src/presentation/js/dropdown.js" defer></script>
 </head>
 <body>
+
+    <!-- Header compartido -->
     <?php require_once '/var/www/src/presentation/views/partials/header.php'; ?>
 
     <main>
@@ -17,19 +24,41 @@
             <h2>Formulario de Contacto</h2>
             <p class="subtitle">Completa tus datos y nos pondremos en contacto contigo.</p>
 
-            <form action="/src/application/ContactFormService.php" method="POST">
+            <!--ACTION CORREGIDO -->
+            <form action="/procesar_contacto.php" method="POST">
+
                 <div class="form-group">
                     <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Tu nombre"
+                        required
+                    >
                 </div>
+
                 <div class="form-group">
                     <label for="correo">Correo electrónico</label>
-                    <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        placeholder="tu@correo.com"
+                        required
+                    >
                 </div>
+
                 <div class="form-group">
                     <label for="mensaje">Mensaje o consulta</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        placeholder="Escribe tu mensaje aquí..."
+                        required
+                    ></textarea>
                 </div>
+
                 <button type="submit">Enviar mensaje →</button>
             </form>
 
@@ -39,25 +68,26 @@
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Mensajes de estado -->
     <?php if (isset($_GET['enviado'])): ?>
-    <div class="modal-overlay" id="modal">
-        <div class="modal">
-            <div class="modal-icon success">✅</div>
-            <h3>¡Mensaje enviado!</h3>
-            <p>Tu mensaje fue recibido correctamente. Pronto nos pondremos en contacto contigo.</p>
-            <button class="modal-close" onclick="document.getElementById('modal').remove()">Cerrar</button>
+        <div class="modal-overlay" id="modal">
+            <div class="modal">
+                <div class="modal-icon success"> </div>
+                <h3>¡Mensaje enviado!</h3>
+                <p>Tu mensaje fue recibido correctamente.</p>
+                <button class="modal-close" onclick="document.getElementById('modal').remove()">Cerrar</button>
+            </div>
         </div>
-    </div>
+
     <?php elseif (isset($_GET['error'])): ?>
-    <div class="modal-overlay" id="modal">
-        <div class="modal">
-            <div class="modal-icon error">❌</div>
-            <h3>Error al enviar</h3>
-            <p>Ocurrió un problema al enviar tu mensaje. Por favor intenta de nuevo.</p>
-            <button class="modal-close" onclick="document.getElementById('modal').remove()">Cerrar</button>
+        <div class="modal-overlay" id="modal">
+            <div class="modal">
+                <div class="modal-icon error">❌</div>
+                <h3>Error al enviar</h3>
+                <p>Ocurrió un problema. Intenta nuevamente.</p>
+                <button class="modal-close" onclick="document.getElementById('modal').remove()">Cerrar</button>
+            </div>
         </div>
-    </div>
     <?php endif; ?>
 
 <footer style="margin-top: 3rem; padding: 2rem; background-color: #f4f4f4; border-top: 2px solid #004b87; text-align: center;">
@@ -67,5 +97,6 @@
         <hr style="width: 50%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
         <p>&copy; 2026 <span>Universidad de La Salle</span> · Proyecto académico</p>
     </footer>
+
 </body>
 </html>
